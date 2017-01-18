@@ -14,6 +14,9 @@
     * In legacy submit, those logs are visible to system admins only
     * Those logs could be selectively revealed (or not) to students based on assignment settings chosen by instructor
    
+* Easier manipulation of assignments
+    * Copying an assignment is simply copying a github repo---not a custom web app action 
+    * Manipulating portions of assignments (test cases, etc.) is manipulating files and directories, not interacting with a thousand confusing mouse clicks on menus.  (easier for instructors, less code to maintain.)
    
 # Advantages for Students
 
