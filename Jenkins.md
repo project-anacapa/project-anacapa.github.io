@@ -102,6 +102,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
 #### Test Case Types
 
 * Diff
+
   ```json
   {
     "command": "./hello",
@@ -113,6 +114,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
   }
   ```
 * Script
+
   ```json
   {
     "command": "./test_data/grader hello",
@@ -122,6 +124,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
   }
   ```
   * Your grading script should print to `stdout` the grade in the following json format:
+  
     ```json
     {
       "score": 75.2,
