@@ -2,6 +2,7 @@
 
 Workflow to get auto-grading set up
 
+1. Install GitHub Organization Plugin and Anacapa Grader Jenkins Plugin with Jenkins
 1. Set up Jenkins to point to the course github org via GitHub Organization Plugin
 1. create assignment spec repo called `assignment-LABNAME` containing the following:
     * assignment_spec.json (described later)
@@ -50,7 +51,6 @@ Questions
 - What happens when a student pushes code to an overdue project?
 - Should we stop building things that pass some threshold over the due date?
   - does this matter?
--
 
 ### Assignment Spec Format
 ```javascript
