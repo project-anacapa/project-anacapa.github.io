@@ -4,7 +4,7 @@ Workflow to get auto-grading set up
 
 1. Install GitHub Organization Plugin and Anacapa Grader Jenkins Plugin with Jenkins
 1. Set up Jenkins to point to the course github org via GitHub Organization Plugin
-1. create assignment spec repo called `assignment-LABNAME` containing the following:
+1. create **private** assignment spec repo called `assignment-LABNAME` containing the following:
     * assignment_spec.json (described later)
     * Jenkinsfile
         - TODO: What will this look like???
@@ -15,6 +15,7 @@ Workflow to get auto-grading set up
     * test_data folder
         - contains information that will be copied to student repos when grading so
           that grading scripts can access them as necessary (still hidden from students)
+        - Equivalent for legacy submit is the "Execution Files"
     * ...completed assignment files to use as reference implementation
 1. When `assignment-LABNAME` is created, a build starts that generates the output
    artifacts as necessary for grading/diffing. Verify that this build succeeds.
@@ -37,7 +38,7 @@ Workflow to get auto-grading set up
    * The `test_data` folder is copied over from the `assignment-LABNAME` repo
    * Code to run is determined by the `testables` field of the `assignment_spec.json`
    * When complete, grade results are output in (json|yaml) via format below
-        - as artifact?
+        - as Jenkins Artifact?
         - POST'd to web application?
         - placed in new repo? e.g. `results-LABNAME-githubid`
         - placed as file in global results repo? e.g. `results-LABNAME`
@@ -51,6 +52,10 @@ Questions
 - What happens when a student pushes code to an overdue project?
 - Should we stop building things that pass some threshold over the due date?
   - does this matter?
+- Who are the users and roles within Jenkins and how do we control access to artifacts that should be private to individual {student, instructor}?
+- Are the users in Jenkins individual people or "machine accounts"?
+
+TODO: Determine permissions and access restrictions for Jenkins views/tools
 
 ### Assignment Spec Format
 ```javascript
@@ -64,13 +69,15 @@ Questions
   // due date for assignment (any submissions after this time will be flagged)
   "deadline": "2017-01-13 23:59:00-08:00",
   // what the students will submit/what will be in their repo
-  "deliverables": [
+  "expected_files": [
     "hello.cpp"
   ], // [] for any deliverable
   // files that will remain read-only to students, but available in their repo
   "uneditables": [
     "Jenkinsfile",
     "Makefile",
+    "src/main/java/edu/ucsb/cs/cs56/Parser.java",
+    "**/*.h",
     "*.h"
   ],
   // test cases and grading information
@@ -142,6 +149,16 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
 
 ### TestResults output format (json or yaml)
 
+```javascript
 {
-
+   "assignment_name": "lab00",
+   "repo_name": "ucsb-cs16-wi17/lab00-githubid",
+   "results": [{
+      "test_group": "Hello World",
+      "test_name": "./hello",
+      "score": 100,
+      "max_score": 100,
+      "output": ""
+   }]
 }
+```
