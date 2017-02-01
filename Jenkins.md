@@ -12,10 +12,12 @@ Workflow to get auto-grading set up
             assignment spec repo (by looking at the name and recognizing that it is
             `assignment-LABNAME`) and treats it differently than the student code
           - When student submissions get graded, they pull in this Jenkinsfile?
-    * test_data folder
+    * test_data/ folder
         - contains information that will be copied to student repos when grading so
           that grading scripts can access them as necessary (still hidden from students)
         - Equivalent for legacy submit is the "Execution Files"
+    * expected_outputs/ folder
+        - TODO: Describe
     * ...completed assignment files to use as reference implementation
 1. When `assignment-LABNAME` is created, a build starts that generates the output
    artifacts as necessary for grading/diffing. Verify that this build succeeds.
@@ -120,6 +122,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
     "timeout": 5
   }
   ```
+  * Either specify expected output (in new expected_outputs/ folder?) or generate from reference solution
 * Script
 
   ```json
