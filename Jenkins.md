@@ -92,6 +92,7 @@ TODO: Determine permissions and access restrictions for Jenkins views/tools
           "kind": "diff",
           "hide_expected": true,
           "diff_source": "stdout",
+          "expected": "generate", // or "/resources/expected_outputs/my_file.txt",
           "timeout": 4
       }]
   }],
@@ -119,6 +120,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
     "kind": "diff",
     "hide_expected": true,
     "diff_source": "output.txt",
+    "expected": "generate", // or "/resources/expected_outputs/my_file.txt",
     "timeout": 5
   }
   ```
