@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Root schema.",
+  "description": "An explanation about the purpose of this instance.",
+  "properties": {
+    "assignment_name": {
+      "type": "string",
+      "title": "Assignment_name schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "lab00"
+    },
+    "maximum_group_size": {
+      "type": "integer",
+      "title": "Maximum_group_size schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 1
+    },
+    "ready": {
+      "type": "boolean",
+      "title": "Ready schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": true
+    },
+    "deadline": {
+      "type": "string",
+      "title": "Deadline schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "2017-02-14 23:59:00-08:00"
+    },
+    "expected_files": {
+      "type": "array",
+      "title": "Expected_files schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "items": {
+        "type": "string",
+        "title": "0 schema.",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "hello.cpp"
+      }
+    },
+    "uneditables": {
+      "type": "array",
+      "title": "Uneditables schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "items": {
+        "type": "string",
+        "title": "0 schema.",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "Jenkinsfile"
+      }
+    },
+    "testables": {
+      "type": "array",
+      "title": "Testables schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "items": {
+        "type": "object",
+        "title": "0 schema.",
+        "description": "An explanation about the purpose of this instance.",
+        "properties": {
+          "test_name": {
+            "type": "string",
+            "title": "Test_name schema.",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "Hello World"
+          },
+          "build_command": {
+            "type": "string",
+            "title": "Build_command schema.",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "g++ -o hello hello.cpp"
+          },
+          "test_cases": {
+            "type": "array",
+            "title": "Test_cases schema.",
+            "description": "An explanation about the purpose of this instance.",
+            "items": {
+              "type": "object",
+              "title": "0 schema.",
+              "description": "An explanation about the purpose of this instance.",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "title": "Command schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "./hello"
+                },
+                "points": {
+                  "type": "integer",
+                  "title": "Points schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 100
+                },
+                "kind": {
+                  "type": "string",
+                  "title": "Kind schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "diff"
+                },
+                "hide_expected": {
+                  "type": "boolean",
+                  "title": "Hide_expected schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": true
+                },
+                "diff_source": {
+                  "type": "string",
+                  "title": "Diff_source schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "stdout"
+                },
+                "expected": {
+                  "type": "string",
+                  "title": "Expected schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "generate"
+                },
+                "timeout": {
+                  "type": "integer",
+                  "title": "Timeout schema.",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 4
+                }
+              },
+              "required": [
+                "command",
+                "points",
+                "kind",
+                "hide_expected",
+                "diff_source",
+                "expected",
+                "timeout"
+              ]
+            }
+          }
+        },
+        "required": [
+          "test_name",
+          "build_command",
+          "test_cases"
+        ]
+      }
+    }
+  },
+  "required": [
+    "assignment_name",
+    "maximum_group_size",
+    "ready",
+    "deadline",
+    "expected_files",
+    "uneditables",
+    "testables"
+  ]
+}
