@@ -92,7 +92,7 @@ TODO: Determine permissions and access restrictions for Jenkins views/tools
           "kind": "diff",
           "hide_expected": true,
           "diff_source": "stdout",
-          "expected": "generate", // or "./anacapa/expected_outputs/my_file.txt",
+          "expected": "generate", // or ".anacapa/expected_outputs/my_file.txt",
           "timeout": 4
       }]
   }],
@@ -120,7 +120,7 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
     "kind": "diff",
     "hide_expected": true,
     "diff_source": "output.txt",
-    "expected": "generate", // or "./anacapa/expected_outputs/my_file.txt",
+    "expected": "generate", // or ".anacapa/expected_outputs/my_file.txt",
     "timeout": 5
   }
   ```
@@ -167,3 +167,29 @@ XXX: Should we provide an "artifacts" option in the assignment spec so that inst
    }]
 }
 ```
+
+### `.anacapa` subfolder
+
+The assignment master repository should contain at the bare minimum the file `.anacapa/assignment_spec.json`. This file describes all of
+the build commands, test cases, and point values that the system will use when auto-grading a student's submission. The following is
+a listing of all the other components of the `.anacapa` folder and what they are for:
+
+- `.anacapa/assignment_spec.json`
+   * As described above, this contains the specification for how your assignment will be auto-graded. Look above for documentation 
+     on this.
+- `.anacapa/build_data/`
+   * The contents of this folder are available during the "build" phase of autograding. That is, before the `build_command` of each
+     test group is run, this folder is injected into the workspace. After the `build_command` succeeds, it is then removed.
+   * Use this folder to supply any data/files you might need at compile time.
+- `.anacapa/test_data/`
+   * The contents of this folder are available during the "run" phase of autograding. That is, before the `command` of each
+     test case (inside a test group) is run, this folder is injected into the workspace. After the `command` succeeds, it is then removed.
+   * Use this folder to supply any data/files you might need at run time.
+- `.anacapa/expected_outputs/`
+   * The contents of this folder are available during the "diff" phase of autograding. That is, once a `command` has been run for a test
+     case, this folder is injected into the workspace. The output from `command` is captured and `diff`-ed with the corresponding
+     expected output file. If there is no difference, then full points are given for that test case. If there is a difference, then 0
+     points are given for that test case. Once the `diff`-ing has completed, this folder is removed from the workspace.
+   * Use this folder for any expected output files you might need.
+   * Note that if you have a reference implementation in the assignment master repo and you chose `generate` for all test cases, then
+     this folder is not needed. Expected outputs are generated from the reference implementation's behavior.
