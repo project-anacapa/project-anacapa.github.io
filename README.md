@@ -8,5 +8,5 @@ Website for Project-Anacapa
 
 * [On boarding](static/md/on-boarding)
 
-
+* [Features](static/md/features)
 
